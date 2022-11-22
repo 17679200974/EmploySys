@@ -105,13 +105,13 @@
         <property name="minimumSize">
          <size>
           <width>60</width>
-          <height>0</height>
+          <height>40</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>60</width>
-          <height>16777215</height>
+          <height>40</height>
          </size>
         </property>
         <property name="text">
@@ -130,7 +130,7 @@
         <property name="minimumSize">
          <size>
           <width>200</width>
-          <height>0</height>
+          <height>40</height>
          </size>
         </property>
         <property name="maximumSize">
@@ -181,13 +181,13 @@
         <property name="minimumSize">
          <size>
           <width>60</width>
-          <height>0</height>
+          <height>40</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>60</width>
-          <height>16777215</height>
+          <height>40</height>
          </size>
         </property>
         <property name="text">
@@ -206,7 +206,7 @@
         <property name="minimumSize">
          <size>
           <width>200</width>
-          <height>0</height>
+          <height>40</height>
          </size>
         </property>
         <property name="maximumSize">
@@ -247,9 +247,18 @@
        <height>50</height>
       </size>
      </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
      <layout class="QHBoxLayout" name="horizontalLayout_5">
       <property name="spacing">
        <number>86</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
       </property>
       <item>
        <spacer name="horizontalSpacer_9">
@@ -295,6 +304,63 @@
     </widget>
    </item>
    <item>
+    <widget class="QWidget" name="widget_6" native="true">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 0, 0);</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_7">
+      <property name="spacing">
+       <number>86</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <spacer name="horizontalSpacer_12">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_LoginMsg">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_13">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
     <widget class="QWidget" name="widget_4" native="true">
      <property name="maximumSize">
       <size>
@@ -305,6 +371,12 @@
      <layout class="QHBoxLayout" name="horizontalLayout_4">
       <property name="spacing">
        <number>70</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
       </property>
       <item>
        <spacer name="horizontalSpacer_4">
@@ -342,8 +414,8 @@
         <property name="text">
          <string>登入</string>
         </property>
-        <property name="shortcut">
-         <string>Return</string>
+        <property name="checkable">
+         <bool>false</bool>
         </property>
        </widget>
       </item>

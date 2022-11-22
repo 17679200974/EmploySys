@@ -1,7 +1,13 @@
 ﻿#ifndef LOGIN_H
 #define LOGIN_H
 
+#include <QTimer>
 #include <QWidget>
+#include <QKeyEvent>
+#include <QEvent>
+
+#include "dbmanage.h"
+#include "mainwindow.h"
 
 namespace Ui {
 class Login;
@@ -15,8 +21,12 @@ public:
     explicit Login(QWidget *parent = nullptr);
     ~Login();
 
+    void keyPressEvent(QKeyEvent *event);
+
+
     bool WriteToIni(const QString &userName, const QString &pwd, const int& pwdStatus ,const int& loginStatus);
     bool ReadFromIni();
+
 
 signals:
 
@@ -29,6 +39,10 @@ private slots:
 
 private:
     Ui::Login *ui;
+    MainWindow *mainWin;
+    QTimer timer;
+
+    DbManage dbManage;
 };
 
 #endif // LOGIN_H

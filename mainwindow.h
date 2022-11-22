@@ -1,7 +1,9 @@
-#ifndef MAINWINDOW_H
+﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTimer>
+#include <QCloseEvent>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -15,7 +17,13 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void closeEvent(QCloseEvent* event);
+
+signals:
+    void SignCloseLogin();
+
 private:
     Ui::MainWindow *ui;
+    QTimer* timer;
 };
 #endif // MAINWINDOW_H

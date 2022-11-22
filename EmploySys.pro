@@ -10,10 +10,8 @@ CONFIG += c++11
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
 
-#指定uic命令将.ui文件转化成ui_*.h文件的存放的目录
 UI_DIR += Forms
 
-#指定rcc命令将.qrc文件转换成qrc_*.h文件的存放目录
 RCC_DIR += Qrc
 
 # You can also make your code fail to compile if it uses deprecated APIs.
@@ -22,11 +20,13 @@ RCC_DIR += Qrc
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    dbmanage.cpp \
     login.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
+    dbmanage.h \
     login.h \
     mainwindow.h
 

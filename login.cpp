@@ -6,6 +6,8 @@
 #include <QIcon>
 #include <QDebug>
 #include <QSettings>
+#include <QMessageBox>
+#include <QTimer>
 
 Login::Login(QWidget *parent) :
     QWidget(parent),
@@ -21,6 +23,8 @@ Login::Login(QWidget *parent) :
     //固定窗口大小
     this->setFixedSize(600,400);
 
+    mainWin = new MainWindow(this);
+
     //设置窗口无边框
     //    this->setWindowFlags(windowFlags() | Qt::FramelessWindowHint);
 
@@ -30,13 +34,34 @@ Login::Login(QWidget *parent) :
     //设置窗口最大化
     //    this->showMaximized();
 
+    //构造函数读取配置文件
     this->ReadFromIni();
+//    this->installEventFilter(this);
+
+    //接收MainWindow发出的SignCloseLogin信号，执行对应功能
+//    connect(mainWin, &MainWindow::SignCloseLogin,this,[=]()
+//    {
+//        this->close();
+//    });
 
 }
 
 Login::~Login()
 {
     delete ui;
+}
+
+void Login::keyPressEvent(QKeyEvent *event)
+{
+    if(event->key() == Qt::Key_Return)
+    {
+        this->on_login_clicked();
+    }
+    else if((event->modifiers() == (Qt::ControlModifier | Qt::AltModifier))
+            && (event->key() == Qt::Key_A))
+    {
+        qDebug() << "CTRL+ALT+A";
+    }
 }
 
 bool Login::WriteToIni(const QString &userName, const QString &pwd, const int& pwdStatus ,const int& loginStatus)
@@ -101,6 +126,13 @@ void Login::on_checkBox_autoLogin_stateChanged(int arg1)
 {
     QString userName = ui->lineEdit_user->text();
     QString pwd = ui->lineEdit_Password->text();
+
+    //自动登入被勾选上，同时记住密码也被勾选上
+    if(Qt::Checked == arg1)
+    {
+        ui->checkBox_pwd->setChecked(true);
+    }
+
     Qt::CheckState localCheckState = ui->checkBox_pwd->checkState();
 
     this->WriteToIni(userName, pwd, localCheckState, arg1);
@@ -113,10 +145,26 @@ void Login::on_login_clicked()
     QString userName = ui->lineEdit_user->text();
     QString pwd = ui->lineEdit_Password->text();
 
+    if(dbManage.CheckAccount(userName, pwd))
+    {
+        //界面跳转
+        mainWin->show();
+        this->hide();
+    }
+    else
+    {
+//        QMessageBox::information(this, "警告","用户名或密码错误!");
+        ui->label_LoginMsg->setText("用户名或密码错误!");
 
+        //错误信息显示2秒后消失
+        if(timer.isActive())
+            timer.stop();
 
-    //界面跳转
-    MainWindow *mainWin = new MainWindow(this);
-    mainWin->show();
-    this->hide();
+        timer.start(2000);
+        connect(&timer,&QTimer::timeout,[=]()
+        {
+            ui->label_LoginMsg->clear();
+        });
+    }
+
 }

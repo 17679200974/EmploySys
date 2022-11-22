@@ -51,6 +51,11 @@ public:
     QCheckBox *checkBox_pwd;
     QCheckBox *checkBox_autoLogin;
     QSpacerItem *horizontalSpacer_10;
+    QWidget *widget_6;
+    QHBoxLayout *horizontalLayout_7;
+    QSpacerItem *horizontalSpacer_12;
+    QLabel *label_LoginMsg;
+    QSpacerItem *horizontalSpacer_13;
     QWidget *widget_4;
     QHBoxLayout *horizontalLayout_4;
     QSpacerItem *horizontalSpacer_4;
@@ -109,8 +114,8 @@ public:
 
         label = new QLabel(widget);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setMinimumSize(QSize(60, 0));
-        label->setMaximumSize(QSize(60, 16777215));
+        label->setMinimumSize(QSize(60, 40));
+        label->setMaximumSize(QSize(60, 40));
 
         horizontalLayout->addWidget(label);
 
@@ -121,7 +126,7 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(lineEdit_user->sizePolicy().hasHeightForWidth());
         lineEdit_user->setSizePolicy(sizePolicy);
-        lineEdit_user->setMinimumSize(QSize(200, 0));
+        lineEdit_user->setMinimumSize(QSize(200, 40));
         lineEdit_user->setMaximumSize(QSize(200, 40));
 
         horizontalLayout->addWidget(lineEdit_user);
@@ -143,8 +148,8 @@ public:
 
         label_2 = new QLabel(widget_2);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setMinimumSize(QSize(60, 0));
-        label_2->setMaximumSize(QSize(60, 16777215));
+        label_2->setMinimumSize(QSize(60, 40));
+        label_2->setMaximumSize(QSize(60, 40));
 
         horizontalLayout_2->addWidget(label_2);
 
@@ -152,7 +157,7 @@ public:
         lineEdit_Password->setObjectName(QString::fromUtf8("lineEdit_Password"));
         sizePolicy.setHeightForWidth(lineEdit_Password->sizePolicy().hasHeightForWidth());
         lineEdit_Password->setSizePolicy(sizePolicy);
-        lineEdit_Password->setMinimumSize(QSize(200, 0));
+        lineEdit_Password->setMinimumSize(QSize(200, 40));
         lineEdit_Password->setMaximumSize(QSize(200, 40));
         lineEdit_Password->setEchoMode(QLineEdit::Password);
 
@@ -168,9 +173,11 @@ public:
         widget_5 = new QWidget(Login);
         widget_5->setObjectName(QString::fromUtf8("widget_5"));
         widget_5->setMaximumSize(QSize(16777215, 50));
+        widget_5->setStyleSheet(QString::fromUtf8(""));
         horizontalLayout_5 = new QHBoxLayout(widget_5);
         horizontalLayout_5->setSpacing(86);
         horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
+        horizontalLayout_5->setContentsMargins(-1, 0, -1, 0);
         horizontalSpacer_9 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_5->addItem(horizontalSpacer_9);
@@ -192,6 +199,30 @@ public:
 
         verticalLayout->addWidget(widget_5);
 
+        widget_6 = new QWidget(Login);
+        widget_6->setObjectName(QString::fromUtf8("widget_6"));
+        widget_6->setMaximumSize(QSize(16777215, 50));
+        widget_6->setStyleSheet(QString::fromUtf8("color: rgb(255, 0, 0);"));
+        horizontalLayout_7 = new QHBoxLayout(widget_6);
+        horizontalLayout_7->setSpacing(86);
+        horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
+        horizontalLayout_7->setContentsMargins(-1, 0, -1, 0);
+        horizontalSpacer_12 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_7->addItem(horizontalSpacer_12);
+
+        label_LoginMsg = new QLabel(widget_6);
+        label_LoginMsg->setObjectName(QString::fromUtf8("label_LoginMsg"));
+
+        horizontalLayout_7->addWidget(label_LoginMsg);
+
+        horizontalSpacer_13 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_7->addItem(horizontalSpacer_13);
+
+
+        verticalLayout->addWidget(widget_6);
+
         widget_4 = new QWidget(Login);
         widget_4->setObjectName(QString::fromUtf8("widget_4"));
         widget_4->setMaximumSize(QSize(16777215, 100));
@@ -211,6 +242,7 @@ public:
         login->setSizePolicy(sizePolicy1);
         login->setMinimumSize(QSize(267, 40));
         login->setMaximumSize(QSize(267, 40));
+        login->setCheckable(false);
 
         horizontalLayout_4->addWidget(login);
 
@@ -260,10 +292,8 @@ public:
         lineEdit_Password->setPlaceholderText(QCoreApplication::translate("Login", "\350\257\267\350\276\223\345\205\245\345\257\206\347\240\201", nullptr));
         checkBox_pwd->setText(QCoreApplication::translate("Login", "\350\256\260\344\275\217\345\257\206\347\240\201", nullptr));
         checkBox_autoLogin->setText(QCoreApplication::translate("Login", "\350\207\252\345\212\250\347\231\273\345\205\245", nullptr));
+        label_LoginMsg->setText(QString());
         login->setText(QCoreApplication::translate("Login", "\347\231\273\345\205\245", nullptr));
-#if QT_CONFIG(shortcut)
-        login->setShortcut(QCoreApplication::translate("Login", "Return", nullptr));
-#endif // QT_CONFIG(shortcut)
         regist->setText(QCoreApplication::translate("Login", "\346\263\250\345\206\214\350\264\246\345\217\267", nullptr));
         regist_takeoff->setText(QCoreApplication::translate("Login", "\346\263\250\351\224\200\350\264\246\345\217\267", nullptr));
     } // retranslateUi
