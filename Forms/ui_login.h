@@ -229,6 +229,7 @@ public:
         horizontalLayout_4 = new QHBoxLayout(widget_4);
         horizontalLayout_4->setSpacing(70);
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
+        horizontalLayout_4->setContentsMargins(-1, 0, -1, 0);
         horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_4->addItem(horizontalSpacer_4);

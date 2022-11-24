@@ -23,16 +23,20 @@ SOURCES += \
     dbmanage.cpp \
     login.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    regist.cpp
 
 HEADERS += \
+    Common.h \
     dbmanage.h \
     login.h \
-    mainwindow.h
+    mainwindow.h \
+    regist.h
 
 FORMS += \
     login.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    regist.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

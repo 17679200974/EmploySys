@@ -2,6 +2,8 @@
 #define DBMANAGE_H
 #include <QSqlDatabase>
 
+#include"Common.h"
+
 class DbManage
 {
 public:
@@ -10,6 +12,7 @@ public:
 
     bool CreateDb();
     bool CheckAccount(const QString &user, const QString &pwd);
+    bool InsertTab(const registMsg& regMsg);
 
 private:
     QSqlDatabase db;

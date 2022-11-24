@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     this->setWindowTitle("主界面");
-    this->showMaximized();
+//    this->showMaximized();
 
     timer = new QTimer(this);
     timer->start(1);
@@ -46,3 +46,9 @@ void MainWindow::closeEvent(QCloseEvent *event)
         timer->stop();
 }
 
+
+void MainWindow::on_pushButton_clicked()
+{
+    emit signReturnLogin();
+    this->hide();
+}

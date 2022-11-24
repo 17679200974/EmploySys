@@ -8,6 +8,7 @@
 
 #include "dbmanage.h"
 #include "mainwindow.h"
+#include "regist.h"
 
 namespace Ui {
 class Login;
@@ -37,9 +38,12 @@ private slots:
 
     void on_login_clicked();
 
+    void on_regist_clicked();
+
 private:
     Ui::Login *ui;
     MainWindow *mainWin;
+    Regist* regist;
     QTimer timer;
 
     DbManage dbManage;

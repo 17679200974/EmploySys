@@ -14,6 +14,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -25,7 +26,7 @@ class Ui_MainWindow
 public:
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
-    QLabel *label;
+    QPushButton *pushButton;
     QLabel *label_time;
     QMenuBar *menubar;
     QStatusBar *statusbar;
@@ -39,19 +40,15 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        label = new QLabel(centralwidget);
-        label->setObjectName(QString::fromUtf8("label"));
-        QFont font;
-        font.setPointSize(42);
-        label->setFont(font);
-        label->setLayoutDirection(Qt::LeftToRight);
-        label->setAutoFillBackground(false);
-        label->setAlignment(Qt::AlignCenter);
+        pushButton = new QPushButton(centralwidget);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
 
-        verticalLayout->addWidget(label);
+        verticalLayout->addWidget(pushButton);
 
         label_time = new QLabel(centralwidget);
         label_time->setObjectName(QString::fromUtf8("label_time"));
+        QFont font;
+        font.setPointSize(42);
         label_time->setFont(font);
         label_time->setAlignment(Qt::AlignCenter);
 
@@ -74,7 +71,7 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        label->setText(QCoreApplication::translate("MainWindow", "\346\254\242\350\277\216\346\235\245\345\210\260\346\210\221\347\232\204\344\270\226\347\225\214", nullptr));
+        pushButton->setText(QCoreApplication::translate("MainWindow", "\351\200\200\345\207\272\347\231\273\345\205\245", nullptr));
         label_time->setText(QString());
     } // retranslateUi
 

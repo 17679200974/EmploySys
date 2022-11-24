@@ -5,7 +5,6 @@
 
 DbManage::DbManage()
 {
-    CreateDb();
 }
 
 DbManage::~DbManage()
@@ -29,16 +28,18 @@ bool DbManage::CreateDb()
     }
 
     //创建表
-    QSqlQuery query(db);
+//    QSqlQuery query(db);
 
-    //id主键 用户名 密码 电话 邮箱 登入标志（是否为新用户） 权限
+//    //id主键 用户名 密码 电话 邮箱 登入标志（是否为新用户） 权限
 //    QString cmd = "create table LoginTable(id integer primary key,"
 //                  "user varchar(20),"
 //                  "pwd varchar(20),"
 //                  "phone varchar(20),"
 //                  "email varchar(20),"
 //                  "loginTarget integer,"
-//                  "Permissions integer);";
+//                  "Permissions integer,"
+//                  "headImage BLOB);";
+
 //    if(!query.exec(cmd))
 //    {
 //        qDebug() << "create error!";
@@ -81,7 +82,35 @@ bool DbManage::CheckAccount(const QString &user, const QString &pwd)
                      qDebug() << "用户名或密码错误!";
                  }
              }
+             else
+             {
+                 qDebug() << "用户名或密码错误!";
+             }
          }
      }
      return false;
+}
+
+bool DbManage::InsertTab(const registMsg &regMsg)
+{
+    QSqlQuery query(db);
+
+    query.prepare("insert into LoginTable(user,pwd,phone,email,loginTarget,Permissions,headImage) values(:user,:pwd,:phone,:email,1,:Permissions,:headImage)");
+    query.bindValue(":user"       , regMsg.userName );
+    query.bindValue(":pwd"        , regMsg.pwd      );
+    query.bindValue(":phone"      , regMsg.phone    );
+    query.bindValue(":email"      , regMsg.email    );
+    query.bindValue(":Permissions", regMsg.admin    );
+    query.bindValue(":headImage"  , regMsg.headImage);
+
+    if(!query.exec())
+    {
+        qDebug() << "insert error!";
+        return false;
+    }
+    else
+    {
+        qDebug() << "insert success!";
+        return true;
+    }
 }

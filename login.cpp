@@ -1,6 +1,7 @@
 ﻿#include "login.h"
 #include "ui_login.h"
 #include "mainwindow.h"
+#include "regist.h"
 
 #include <QFile>
 #include <QIcon>
@@ -23,7 +24,10 @@ Login::Login(QWidget *parent) :
     //固定窗口大小
     this->setFixedSize(600,400);
 
+    dbManage.CreateDb();
+
     mainWin = new MainWindow(this);
+    regist = new Regist(this);
 
     //设置窗口无边框
     //    this->setWindowFlags(windowFlags() | Qt::FramelessWindowHint);
@@ -39,10 +43,19 @@ Login::Login(QWidget *parent) :
 //    this->installEventFilter(this);
 
     //接收MainWindow发出的SignCloseLogin信号，执行对应功能
-//    connect(mainWin, &MainWindow::SignCloseLogin,this,[=]()
-//    {
-//        this->close();
-//    });
+    connect(mainWin, &MainWindow::SignCloseLogin,this,[=]()
+    {
+        this->close();
+    });
+
+    connect(regist, &Regist::signReturnLogin,this,[=]()
+    {
+        this->show();
+    });
+    connect(mainWin, &MainWindow::signReturnLogin,this,[=]()
+    {
+        this->show();
+    });
 
 }
 
@@ -91,7 +104,7 @@ bool Login::ReadFromIni()
     case 2:
         ui->lineEdit_user->setText(setting.value("Login/user").toString());
         ui->lineEdit_Password->setText(setting.value("Login/password").toString());
-        ui->checkBox_pwd->setChecked(true);
+        ui->checkBox_pwd->setCheckState(Qt::Checked);
         break;
     default:
         break;
@@ -102,8 +115,8 @@ bool Login::ReadFromIni()
     case 2:
         ui->lineEdit_user->setText(setting.value("Login/user").toString());
         ui->lineEdit_Password->setText(setting.value("Login/password").toString());
-        ui->checkBox_pwd->setChecked(true);
-        ui->checkBox_autoLogin->setChecked(true);
+        ui->checkBox_pwd->setCheckState(Qt::Checked);
+        ui->checkBox_autoLogin->setCheckState(Qt::Checked);
         this->on_login_clicked();
         break;
     default:
@@ -148,12 +161,11 @@ void Login::on_login_clicked()
     if(dbManage.CheckAccount(userName, pwd))
     {
         //界面跳转
-        mainWin->show();
+        mainWin->showMaximized();
         this->hide();
     }
     else
     {
-//        QMessageBox::information(this, "警告","用户名或密码错误!");
         ui->label_LoginMsg->setText("用户名或密码错误!");
 
         //错误信息显示2秒后消失
@@ -167,4 +179,10 @@ void Login::on_login_clicked()
         });
     }
 
+}
+
+void Login::on_regist_clicked()
+{
+    regist->show();
+    this->hide();
 }
