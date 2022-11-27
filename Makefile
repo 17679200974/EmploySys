@@ -253,6 +253,7 @@ Makefile: EmploySys.pro ../../../Qt5.13.1/5.13.2/mingw73_64/mkspecs/win32-g++/qm
 		../../../Qt5.13.1/5.13.2/mingw73_64/lib/Qt5Widgets.prl \
 		../../../Qt5.13.1/5.13.2/mingw73_64/lib/Qt5Gui.prl \
 		../../../Qt5.13.1/5.13.2/mingw73_64/lib/Qt5Sql.prl \
+		../../../Qt5.13.1/5.13.2/mingw73_64/lib/Qt5Network.prl \
 		../../../Qt5.13.1/5.13.2/mingw73_64/lib/Qt5Core.prl \
 		../../../Qt5.13.1/5.13.2/mingw73_64/lib/qtmain.prl
 	$(QMAKE) -o Makefile EmploySys.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
@@ -446,6 +447,7 @@ EmploySys.pro:
 ../../../Qt5.13.1/5.13.2/mingw73_64/lib/Qt5Widgets.prl:
 ../../../Qt5.13.1/5.13.2/mingw73_64/lib/Qt5Gui.prl:
 ../../../Qt5.13.1/5.13.2/mingw73_64/lib/Qt5Sql.prl:
+../../../Qt5.13.1/5.13.2/mingw73_64/lib/Qt5Network.prl:
 ../../../Qt5.13.1/5.13.2/mingw73_64/lib/Qt5Core.prl:
 ../../../Qt5.13.1/5.13.2/mingw73_64/lib/qtmain.prl:
 qmake: FORCE

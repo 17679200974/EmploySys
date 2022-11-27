@@ -1,4 +1,4 @@
-QT       += core gui sql
+QT       += core gui sql network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -21,19 +21,24 @@ RCC_DIR += Qrc
 
 SOURCES += \
     dbmanage.cpp \
+    findPwd.cpp \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
-    regist.cpp
+    regist.cpp \
+    smtp.cpp
 
 HEADERS += \
     Common.h \
     dbmanage.h \
+    findPwd.h \
     login.h \
     mainwindow.h \
-    regist.h
+    regist.h \
+    smtp.h
 
 FORMS += \
+    findPwd.ui \
     login.ui \
     mainwindow.ui \
     regist.ui

@@ -17,6 +17,8 @@ struct registMsg
     QString email       ;
     QByteArray headImage;
     ADMINISTRATE admin  ;
+
+    QString newPwd      ;
 };
 
 #endif // COMMON_H

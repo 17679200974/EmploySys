@@ -36,7 +36,7 @@ public:
     QWidget *widget_2;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_2;
-    QLineEdit *lineEdit_user;
+    QLineEdit *lineEdit_regist_user;
     QSpacerItem *horizontalSpacer_13;
     QWidget *widget_3;
     QHBoxLayout *horizontalLayout_3;
@@ -111,8 +111,7 @@ public:
         pushButton_icon->setObjectName(QString::fromUtf8("pushButton_icon"));
         pushButton_icon->setMinimumSize(QSize(120, 120));
         pushButton_icon->setMaximumSize(QSize(120, 120));
-        pushButton_icon->setStyleSheet(QString::fromUtf8("border:1px solid blcak;\n"
-"border-radius:60px;"));
+        pushButton_icon->setStyleSheet(QString::fromUtf8(""));
         pushButton_icon->setFlat(false);
 
         gridLayout->addWidget(pushButton_icon, 0, 0, 2, 1);
@@ -128,12 +127,12 @@ public:
 
         horizontalLayout_2->addWidget(label_2);
 
-        lineEdit_user = new QLineEdit(widget_2);
-        lineEdit_user->setObjectName(QString::fromUtf8("lineEdit_user"));
-        lineEdit_user->setMinimumSize(QSize(200, 40));
-        lineEdit_user->setMaximumSize(QSize(200, 40));
+        lineEdit_regist_user = new QLineEdit(widget_2);
+        lineEdit_regist_user->setObjectName(QString::fromUtf8("lineEdit_regist_user"));
+        lineEdit_regist_user->setMinimumSize(QSize(200, 40));
+        lineEdit_regist_user->setMaximumSize(QSize(200, 40));
 
-        horizontalLayout_2->addWidget(lineEdit_user);
+        horizontalLayout_2->addWidget(lineEdit_regist_user);
 
         horizontalSpacer_13 = new QSpacerItem(100, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 

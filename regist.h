@@ -16,6 +16,7 @@ public:
     ~Regist();
 
     bool CheckNumber(const QString& number);
+    void clearMsg();
 
 signals:
     void signReturnLogin();
@@ -27,6 +28,8 @@ private slots:
 
     void on_pushButton_icon_clicked();
 
+    void on_pushButton_Send_clicked();
+
 public:
 
 
@@ -34,6 +37,7 @@ private:
     Ui::Regist *ui;
     DbManage dbManage;
     registMsg regMsg;
+    int code;
 
 };
 

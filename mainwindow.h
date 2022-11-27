@@ -24,7 +24,8 @@ signals:
     void signReturnLogin();
 
 private slots:
-    void on_pushButton_clicked();
+
+    void on_pushButton_main_exit_clicked();
 
 private:
     Ui::MainWindow *ui;

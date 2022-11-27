@@ -3,5 +3,24 @@
         <file>res/exit.png</file>
         <file>res/setting.png</file>
         <file>res/user.png</file>
+        <file>res/cat1.jpg</file>
+        <file>res/cat2.jpg</file>
+        <file>style.qss</file>
+        <file>res/2.jpg</file>
+        <file>res/3.jpg</file>
+        <file>res/4.jpg</file>
+        <file>res/confirm_pwd.png</file>
+        <file>res/email.png</file>
+        <file>res/phone.png</file>
+        <file>res/pwd.png</file>
+        <file>res/user1.png</file>
+        <file>res/down_black.png</file>
+        <file>res/down_white.png</file>
+        <file>res/eyes_black.png</file>
+        <file>res/eyes_white.png</file>
+        <file>res/23.jpg</file>
+        <file>res/59.jpg</file>
+        <file>res/67.jpg</file>
+        <file>res/79.jpg</file>
     </qresource>
 </RCC>

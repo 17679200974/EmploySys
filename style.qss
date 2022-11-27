@@ -1,0 +1,55 @@
+﻿
+/*** QWidget ***/
+#widget_login
+{
+    border-image:url(:/res/4.jpg);
+}
+#widget_pwd,#widget_user
+{
+    border-bottom:1px solid white;
+}
+
+/*** QPushButton ***/
+QPushButton
+{
+    background:transparent;
+}
+
+QPushButton:pressed
+{
+    color: red;
+}
+
+QPushButton:!pressed
+{
+    color: grey;
+}
+
+#login,#pushButton_regist,#pushButton_return_login,#pushButton_Send
+{
+    font:20px;
+}
+
+#pushButton_icon
+{
+    border:1px solid blcak;
+    border-radius:60px;
+}
+
+/*** QLabel ***/
+#label_pwd,#label_user
+{
+    font:12px;
+    color:white;
+}
+
+/*** QLineEdit ***/
+#lineEdit_user,#lineEdit_Password
+{
+    background:transparent;
+    color:white;
+    font:12px;
+    border:none;
+}
+
+

@@ -3,12 +3,15 @@
 #include "mainwindow.h"
 #include "regist.h"
 
+
 #include <QFile>
 #include <QIcon>
 #include <QDebug>
 #include <QSettings>
 #include <QMessageBox>
 #include <QTimer>
+#include <QMenu>
+#include <QFileDialog>
 
 Login::Login(QWidget *parent) :
     QWidget(parent),
@@ -24,10 +27,18 @@ Login::Login(QWidget *parent) :
     //固定窗口大小
     this->setFixedSize(600,400);
 
+    //顶层容器使用样式属性
+    //    setAttribute(Qt::WA_StyledBackground);
+
     dbManage.CreateDb();
 
     mainWin = new MainWindow(this);
     regist = new Regist(this);
+    findPwd = new FindPwd(this);
+
+    //给pushButton_eyes,pushButton_down安装事件过滤器
+    ui->pushButton_eyes->installEventFilter(this);
+    ui->pushButton_down->installEventFilter(this);
 
     //设置窗口无边框
     //    this->setWindowFlags(windowFlags() | Qt::FramelessWindowHint);
@@ -40,7 +51,15 @@ Login::Login(QWidget *parent) :
 
     //构造函数读取配置文件
     this->ReadFromIni();
-//    this->installEventFilter(this);
+
+    //初始化Action 改变背景
+    //    this->ChangeBgk();
+    menu = new QMenu();
+    changeBgk = new QAction("自定义背景",this);
+    menu->addAction(changeBgk);
+
+    //更换背景
+    bool ret = connect(changeBgk, SIGNAL(triggered(bool)), this, SLOT(SlotChangeBgk(bool)));
 
     //接收MainWindow发出的SignCloseLogin信号，执行对应功能
     connect(mainWin, &MainWindow::SignCloseLogin,this,[=]()
@@ -52,11 +71,17 @@ Login::Login(QWidget *parent) :
     {
         this->show();
     });
+    connect(findPwd, &FindPwd::signReturnLogin,this,[=]()
+    {
+        this->show();
+    });
     connect(mainWin, &MainWindow::signReturnLogin,this,[=]()
     {
         this->show();
     });
 
+    //设置样式
+    this->SetStyle();
 }
 
 Login::~Login()
@@ -75,6 +100,39 @@ void Login::keyPressEvent(QKeyEvent *event)
     {
         qDebug() << "CTRL+ALT+A";
     }
+}
+
+void Login::contextMenuEvent(QContextMenuEvent *event)
+{
+    menu->exec(event->globalPos());
+}
+
+bool Login::eventFilter(QObject *watched, QEvent *event)
+{
+    if(ui->pushButton_eyes == watched)
+    {
+        if(QEvent::Enter == event->type())
+        {
+            ui->pushButton_eyes->setIcon(QIcon(":/res/eyes_black.png"));
+        }
+        else if(QEvent::Leave == event->type())
+        {
+            ui->pushButton_eyes->setIcon(QIcon(":/res/eyes_white.png"));
+        }
+
+    }
+    else if(ui->pushButton_down == watched)
+    {
+        if(QEvent::Enter == event->type())
+        {
+            ui->pushButton_down->setIcon(QIcon(":/res/down_black.png"));
+        }
+        else if(QEvent::Leave == event->type())
+        {
+            ui->pushButton_down->setIcon(QIcon(":/res/down_white.png"));
+        }
+    }
+    return QWidget::eventFilter(watched, event);
 }
 
 bool Login::WriteToIni(const QString &userName, const QString &pwd, const int& pwdStatus ,const int& loginStatus)
@@ -151,12 +209,49 @@ void Login::on_checkBox_autoLogin_stateChanged(int arg1)
     this->WriteToIni(userName, pwd, localCheckState, arg1);
 }
 
+void Login::ShowLoginMsg()
+{
+    if(timer.isActive())
+        timer.stop();
+
+    timer.start(2000);
+    connect(&timer,&QTimer::timeout,[=]()
+    {
+        ui->label_LoginMsg->clear();
+    });
+}
+
+void Login::ChangeBgk()
+{
+
+}
+
+void Login::SetStyle()
+{
+    QFile file(":/style.qss");
+    if(file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        this->setStyleSheet(file.readAll());
+        file.close();
+    }
+}
+
 void Login::on_login_clicked()
 {
     //与数据库中数据校验
     //TODO
     QString userName = ui->lineEdit_user->text();
     QString pwd = ui->lineEdit_Password->text();
+
+    //判空
+    if(userName.isEmpty() || pwd.isEmpty())
+    {
+        ui->label_LoginMsg->setText("用户名或密码不能为空!");
+        //错误信息显示2秒后消失
+        ShowLoginMsg();
+        return;
+    }
+
 
     if(dbManage.CheckAccount(userName, pwd))
     {
@@ -169,20 +264,50 @@ void Login::on_login_clicked()
         ui->label_LoginMsg->setText("用户名或密码错误!");
 
         //错误信息显示2秒后消失
-        if(timer.isActive())
-            timer.stop();
-
-        timer.start(2000);
-        connect(&timer,&QTimer::timeout,[=]()
-        {
-            ui->label_LoginMsg->clear();
-        });
+        ShowLoginMsg();
+        return;
     }
 
 }
 
 void Login::on_regist_clicked()
 {
-    regist->show();
     this->hide();
+    regist->clearMsg();
+    regist->show();
+}
+
+void Login::SlotChangeBgk(bool isOk)
+{
+    if(!isOk)
+    {
+        QString openFilePath = QFileDialog::getOpenFileName(
+                    this,tr("选择头像"),
+                    "./",
+                    tr("Image files(*.jpg *.png);;All files(*.*)"));
+
+        if(openFilePath.isEmpty())
+        {
+            return;
+        }
+        //显示背景
+        ui->widget_login->setStyleSheet(QString("#widget_login{border-image:url(%1);}").arg(openFilePath));
+    }
+}
+
+void Login::on_pushButton_eyes_pressed()
+{
+    ui->lineEdit_Password->setEchoMode(QLineEdit::Normal);
+}
+
+void Login::on_pushButton_eyes_released()
+{
+    ui->lineEdit_Password->setEchoMode(QLineEdit::Password);
+}
+
+void Login::on_regist_findPwd_clicked()
+{
+    this->hide();
+    findPwd->clearMsg();
+    findPwd->show();
 }

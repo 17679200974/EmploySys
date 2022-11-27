@@ -9,6 +9,7 @@
 #include "dbmanage.h"
 #include "mainwindow.h"
 #include "regist.h"
+#include "findPwd.h"
 
 namespace Ui {
 class Login;
@@ -23,12 +24,20 @@ public:
     ~Login();
 
     void keyPressEvent(QKeyEvent *event);
+    void contextMenuEvent(QContextMenuEvent *event);
+    bool eventFilter(QObject *watched, QEvent *event);
 
 
     bool WriteToIni(const QString &userName, const QString &pwd, const int& pwdStatus ,const int& loginStatus);
     bool ReadFromIni();
 
 
+    void ShowLoginMsg();
+
+    void ChangeBgk();
+
+    void SetStyle();
+    
 signals:
 
 private slots:
@@ -40,13 +49,24 @@ private slots:
 
     void on_regist_clicked();
 
+    void SlotChangeBgk(bool isClicked);
+
+    void on_pushButton_eyes_pressed();
+
+    void on_pushButton_eyes_released();
+
+    void on_regist_findPwd_clicked();
+
 private:
     Ui::Login *ui;
     MainWindow *mainWin;
     Regist* regist;
+    FindPwd* findPwd;
     QTimer timer;
-
     DbManage dbManage;
+
+    QMenu* menu;
+    QAction * changeBgk;
 };
 
 #endif // LOGIN_H

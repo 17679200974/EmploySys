@@ -1,0 +1,12 @@
+release/dbmanage.o
+release/findPwd.o
+release/login.o
+release/main.o
+release/mainwindow.o
+release/regist.o
+release/smtp.o
+release/qrc_res.o
+release/moc_findPwd.o
+release/moc_login.o
+release/moc_mainwindow.o
+release/moc_regist.o

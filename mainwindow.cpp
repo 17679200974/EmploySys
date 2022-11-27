@@ -46,8 +46,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
         timer->stop();
 }
 
-
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_pushButton_main_exit_clicked()
 {
     emit signReturnLogin();
     this->hide();
